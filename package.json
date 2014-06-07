@@ -1,7 +1,8 @@
 {
-  "name": "node-engine-light",
+  "name": "engine-light",
   "version": "0.0.1",
   "description": "make your node app compatible with engine-light",
+  "repository": "git@github.com:AgileDiagnosis/chai-interface.git",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/engine-light.js -R spec",
@@ -9,10 +10,12 @@
   },
   "keywords": [
     "monitoring",
+    "engine light",
     "cfa"
   ],
   "author": "jeremiak",
   "license": "ISC",
+  "readmeFilename": "README.md",
   "devDependencies": {
     "mocha": "^1.18.2",
     "chai": "^1.9.1",

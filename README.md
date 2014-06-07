@@ -2,7 +2,7 @@
 be compatible with [Engine Light](http://engine-light.codeforamerica.org/)
 
 ## installation
-  $ npm install node-engine-light
+  $ npm install engine-light
 
 ## documentation
 
@@ -49,9 +49,9 @@ The second (optional) is expected to be a function, that returns the  current re
 function getSendgridUsage() {
 	var allowed, used
 	percentage = (allowed/used) * 100
-	
+
 	return percentage
-} 
+}
 
 el.addResource('Sendgrid')
 
@@ -64,3 +64,4 @@ el.addResource('Sendgrid')
 
 Please submit pull requests and issues through github.
 
+You can run tests with `npm test`
