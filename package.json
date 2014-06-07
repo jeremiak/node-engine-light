@@ -2,7 +2,7 @@
   "name": "engine-light",
   "version": "0.0.1",
   "description": "make your node app compatible with engine-light",
-  "repository": "git@github.com:AgileDiagnosis/chai-interface.git",
+  "repository": "git@github.com:jeremiak/node-engine-light.git",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/engine-light.js -R spec",
