@@ -53,7 +53,7 @@ function getSendgridUsage() {
 	return percentage
 }
 
-el.addResource('Sendgrid')
+el.addResource('Sendgrid', getSendgridUsage)
 
 // returns '{"status":"ok","updated":1402121246418,"dependencies":[],"resources":{"Sendgrid":17.85}}'
 ```
