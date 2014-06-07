@@ -1,6 +1,6 @@
 {
   "name": "engine-light",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "make your node app compatible with engine-light",
   "repository": "git@github.com:jeremiak/node-engine-light.git",
   "main": "index.js",
