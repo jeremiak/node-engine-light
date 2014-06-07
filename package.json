@@ -1,0 +1,21 @@
+{
+  "name": "node-engine-light",
+  "version": "0.0.1",
+  "description": "make your node app compatible with engine-light",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/engine-light.js -R spec",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "monitoring",
+    "cfa"
+  ],
+  "author": "jeremiak",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^1.18.2",
+    "chai": "^1.9.1",
+    "chai-interface": "^1.1.0"
+  }
+}
