@@ -1,5 +1,6 @@
 var chai = require('chai'),
     expect = chai.expect
+
 require('polyfill-promise')
 
 chai.should()
@@ -88,4 +89,40 @@ describe('Engine Light', function() {
 
   })
 
+  describe('Middleware', function() {
+    it('should return a function with 3 arguments', function() {
+      var el = new EngineLight()
+
+      var middleware = el.getMiddleware()
+      middleware.should.be.instanceof(Function)
+      middleware.length.should.equal(3)
+    })
+
+    it('should respond to /.well-known/status with getStatus() text', function(done) {
+      var el = new EngineLight(), body,
+          middleware = el.getMiddleware(),
+          req = {url: '/.well-known/status'},
+          res = {
+            setHeader: function() {},
+            write: function(vaL) { body = JSON.parse(vaL)},
+            end: end
+          }
+
+      middleware(req, res)
+
+      function end() {
+        body.should.include.keys('status', 'updated', 'dependencies', 'resources')
+        done()
+      }
+    })
+
+    it('should not respond to any URL except for /.well-known/status', function(done) {
+      var el = new EngineLight(),
+          middleware = el.getMiddleware(),
+          req = {url: '/other-things'}, res
+
+      middleware(req, res, done)
+    })
+
+  })
 })
