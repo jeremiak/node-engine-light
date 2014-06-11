@@ -1,5 +1,6 @@
 var chai = require('chai'),
     expect = chai.expect
+require('polyfill-promise')
 
 chai.should()
 chai.use(require('chai-interface'))
@@ -33,6 +34,25 @@ describe('Engine Light', function() {
     el._resources['Sendgrid'].should.equal(expected)
   })
 
+  it('should checks resource status from Promise-returning resource status providers', function(done) {
+    var el = require('../index')
+
+    var checkStatus = function () {
+      return Promise.resolve(0)
+    }
+
+    el.addResource('Sendgrid', checkStatus)
+
+    el()
+      .then(function (engineLightString) {
+        var obj = JSON.parse(engineLightString)
+        obj.resources.Sendgrid.should.equal(0)
+      })
+      .then(done, done)
+
+  })
+
+
   it('should add resources with function to return 0 if no <int> is supplied', function() {
     var el = require('../index')
 
@@ -41,23 +61,30 @@ describe('Engine Light', function() {
     el._resources['Sengrid'].should.be.an.instanceof(Function)
   })
 
-  it('should return with the proper attributes', function() {
+  it('should return with the proper attributes', function(done) {
     var el = require('../index')
 
-    JSON.parse(el()).should.have.interface({
-      status: String,
-      updated: Number,
-      dependencies: Array,
-      resources: Object
+    el().then(function (str) {
+      JSON.parse(str).should.have.interface({
+        status: String,
+        updated: Number,
+        dependencies: Array,
+        resources: Object
+      })
     })
+    .then(done, done)
+  
   })
 
-  it('should return status set to any value', function() {
+  it('should return status set to any value', function(done) {
     var el = require('../index'),
         expected = JSON.stringify('yo')
 
-    e = el(expected)
-    JSON.parse(e)['status'].should.equal(expected)
+    el(expected).then(function (str) {
+      JSON.parse(str)['status'].should.equal(expected)
+    })
+    .then(done, done)
+    
   })
 
 })
