@@ -9,25 +9,27 @@ be compatible with [Engine Light](http://engine-light.codeforamerica.org/)
 Require `engine-light` and create an object
 
 ```js
-var el = require('engine-light')
+var EngineLight = require('engine-light')
+
+var engineLight = new EngineLight()
 ```
 
 Then use it right away to generate Engine Light compliant responses
 
 ```js
 
-el()
+engineLight.getStatus()
 // returns a Promise of '{"status":"ok","updated":1402120470799,"dependencies":[],"resources":{}}'
 
-el('doing aiight')
+engineLight.getStatus('doing aiight')
 // returns a Promise of '{"status":"doing aiight","updated":1402120470799,"dependencies":[],"resources":{}}'
 ```
 
 You can add your own depdencies with the `addDependency` function
 
 ```js
-el.addDependency('Postgres')
-el()
+engineLight.addDependency('Postgres')
+engineLight.getStatus()
 // returns a Promise of '{"status":"ok","updated":1402120706100,"dependencies":["Postgres"],"resources":{}}'
 ```
 
@@ -45,8 +47,8 @@ function getSendgridUsage() {
 	return percentage
 }
 
-el.addResource('Sendgrid', getSendgridUsage)
-el()
+engineLight.addResource('Sendgrid', getSendgridUsage)
+engineLight.getStatus()
 // returns a Promise of '{"status":"ok","updated":1402121246418,"dependencies":[],"resources":{"Sendgrid":17.85}}'
 ```
 
