@@ -17,26 +17,18 @@ Then use it right away to generate Engine Light compliant responses
 ```js
 
 el()
-// returns '{"status":"ok","updated":1402120470799,"dependencies":[],"resources":{}}'
+// returns a Promise of '{"status":"ok","updated":1402120470799,"dependencies":[],"resources":{}}'
 
 el('doing aiight')
-// returns '{"status":"doing aiight","updated":1402120470799,"dependencies":[],"resources":{}}'
+// returns a Promise of '{"status":"doing aiight","updated":1402120470799,"dependencies":[],"resources":{}}'
 ```
 
 You can add your own depdencies with the `addDependency` function
 
 ```js
 el.addDependency('Postgres')
-
-// returns '{"status":"ok","updated":1402120706100,"dependencies":["Postgres"],"resources":{}}'
-```
-
-Of course, you should be able to get rid of any dependencies. Use `removeDependency`
-
-```js
-el.removeDependency('Postgres')
-
-// returns '{"status":"ok","updated":1402120802897,"dependencies":[],"resources":{}}'
+el()
+// returns a Promise of '{"status":"ok","updated":1402120706100,"dependencies":["Postgres"],"resources":{}}'
 ```
 
 You can add resources as well. `addResource` takes two parameters:
@@ -54,13 +46,14 @@ function getSendgridUsage() {
 }
 
 el.addResource('Sendgrid', getSendgridUsage)
-
-// returns '{"status":"ok","updated":1402121246418,"dependencies":[],"resources":{"Sendgrid":17.85}}'
+el()
+// returns a Promise of '{"status":"ok","updated":1402121246418,"dependencies":[],"resources":{"Sendgrid":17.85}}'
 ```
 
 ## contributors
 
 @jeremiak
+@jden
 
 Please submit pull requests and issues through github.
 

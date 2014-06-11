@@ -1,3 +1,5 @@
+var resolved = require('resolved')
+
 engineLight._dependencies = []
 engineLight._resources = {}
 
@@ -30,13 +32,21 @@ function executeResourceFunctions(resources) {
   return updated_resources
 }
 
-function engineLight(status) {
-  status = status || 'ok'
-  return JSON.stringify({
+// (String?) => Promise<Object>
+function buildResponseObject(status) {
+  return resolved({
     'status': status,
     'updated': new Date().getTime(),
     'dependencies': engineLight._dependencies,
     'resources': executeResourceFunctions(engineLight._resources)
+  })
+}
+
+// (String?) => Promise<String>
+function engineLight(status) {
+  status = status || 'ok'
+  return buildResponseObject(status).then(function (val) {
+    return JSON.stringify(val)
   })
 }
 
