@@ -52,6 +52,19 @@ engineLight.getStatus()
 // returns a Promise of '{"status":"ok","updated":1402121246418,"dependencies":[],"resources":{"Sendgrid":17.85}}'
 ```
 
+Engine Light can also be be used as middleware.
+
+```js
+var express = require('express')
+var app = express()
+var EngineLight = require('engine-light')
+
+var engineLight = new EngineLight()
+app.use(engineLight.getMiddleware())
+
+app.listen(80)
+```
+
 ## contributors
 
 @jeremiak

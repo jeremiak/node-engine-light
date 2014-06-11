@@ -52,4 +52,23 @@ EngineLight.prototype.getStatus = function (status) {
   })
 }
 
+EngineLight.prototype.getMiddleware = function() {
+  var self = this
+  return function (req, res, next) {
+      if (req.url != '/.well-known/status') {
+        next()
+      }
+      else {
+        res.setHeader('Content-Type', 'application/json')
+        res.setHeader('Content-Encoding', 'utf-8')
+
+        self.getStatus()
+          .then(function(engineLightStatus) {
+            res.write(engineLightStatus)
+            res.end()
+        })
+      }
+  }
+}
+
 module.exports = EngineLight
