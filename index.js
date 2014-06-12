@@ -1,6 +1,9 @@
 var resolved = require('resolved')
 
 function EngineLight() {
+  if (!(this instanceof EngineLight)) {
+    return new EngineLight()
+  }
   this._dependencies = []
   this._resources = {}
 }

@@ -14,6 +14,11 @@ describe('Engine Light', function() {
     el.should.be.instanceof(Object)
   })
 
+  it('should create a new EngineLight object even without the new keywodrd', function () {
+    var el = EngineLight()
+    el.should.be.instanceof(EngineLight)
+  })
+
   it('should add depencies with addDependency(string)', function() {
     var el = new EngineLight()
 
@@ -59,7 +64,6 @@ describe('Engine Light', function() {
     var el = new EngineLight()
 
     el.addResource('Sengrid')
-    console.log(typeof(el._resources['Sengrid']))
     el._resources['Sengrid'].should.be.an.instanceof(Function)
   })
 
