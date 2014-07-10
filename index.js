@@ -38,10 +38,16 @@ function executeResourceFunctions(resources) {
 EngineLight.prototype.buildResponseObject = function (status) {
   return resolved({
     'status': status,
-    'updated': new Date().getTime(),
+    'updated': getUnixTimestamp(),
     'dependencies': this._dependencies,
     'resources': executeResourceFunctions(this._resources)
   })
+}
+
+// () => Number
+// returns Seconds Since Epoch, rather than JS millisecond timestamp
+function getUnixTimestamp() {
+  return Math.floor(new Date().getTime() / 1000)
 }
 
 // (String?) => Promise<String>
