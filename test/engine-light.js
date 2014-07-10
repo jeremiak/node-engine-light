@@ -78,6 +78,16 @@ describe('Engine Light', function() {
 
   })
 
+  it('should return time in Seconds Since Epoch', function (done) {
+    var el = new EngineLight()
+
+    el.getStatus().then(function (str) {
+      var time = String(JSON.parse(str).updated)
+      time.length.should.equal(10)
+    })
+    .then(done, done)
+  })
+
   it('should return status set to any value', function(done) {
     var el = new EngineLight(),
         expected = JSON.stringify('yo')
