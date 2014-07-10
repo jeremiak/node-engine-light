@@ -12,6 +12,8 @@ Require `engine-light` and create an object
 var EngineLight = require('engine-light')
 
 var engineLight = new EngineLight()
+// can also be used without the `new` keyword:
+engineLight = EngineLight()
 ```
 
 Then use it right away to generate Engine Light compliant responses
